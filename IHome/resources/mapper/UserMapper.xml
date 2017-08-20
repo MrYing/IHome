@@ -2,34 +2,32 @@
 <!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
  "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
 
-<mapper namespace="com.shanda.dao.UserDao">
+<mapper namespace="com.ihome.dao.UserDao">
 
-<select id="findAll" resultType="com.shanda.entity.User">
+<select id="findAll" resultType="com.ihome.entity.User">
 	 select * from user
 </select>
 
 <!-- 添加一个账户信息 -->
-<insert id="save" parameterType="com.shanda.entity.User">
-	insert into user(name,passport, job, qq, weixin, phone,address,type) values(
+<insert id="save" parameterType="com.ihome.entity.User">
+	insert into user(name,password,phone,address,role,createTime) values(
 		#{name},
-		#{passport},
-		#{job,jdbcType=VARCHAR},
-		#{qq,jdbcType=VARCHAR},
-		#{weixin,jdbcType=VARCHAR},
+		#{password},
 		#{phone,jdbcType=VARCHAR},
 		#{address,jdbcType=VARCHAR},
-		#{type,jdbcType=VARCHAR}
+		#{role,jdbcType=VARCHAR},
+		#{createTime}
 	)
 </insert>
 
-<select id="findByName" parameterType="java.lang.String" resultType="com.shanda.entity.User">
+<select id="findByName" parameterType="java.lang.String" resultType="com.ihome.entity.User">
 	select * from user where name = #{name}
 </select>
-<select id="findById" parameterType="java.lang.Integer" resultType="com.shanda.entity.User">
+<select id="findById" parameterType="java.lang.Integer" resultType="com.ihome.entity.User">
 	select * from user where id = #{id}
 </select>
 
-<update id="updateUser" parameterType="com.shanda.entity.User">
+<update id="updateUser" parameterType="com.ihome.entity.User">
 	update user
 	<set>
 		<if test="name !=null">

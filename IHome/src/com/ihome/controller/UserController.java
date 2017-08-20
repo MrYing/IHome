@@ -1,5 +1,6 @@
-package com.shanda.controller;
+package com.ihome.controller;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -11,8 +12,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.shanda.dao.UserDao;
-import com.shanda.entity.User;
+import com.ihome.dao.UserDao;
+import com.ihome.entity.User;
+import com.ihome.utils.MD5Util;
+import com.mysql.jdbc.Util;
 
 @Controller
 @RequestMapping("/user")
@@ -42,20 +45,23 @@ public class UserController {
 		return "user/addUser";
 	}
 	
-	@RequestMapping("/submitUser.do")
-	public String submitUser(User user) {
+	/**
+	 * 注册
+	 * @param user
+	 * @return
+	 */
+	@RequestMapping("/register")
+	public String register(User user) {
 		user.setName(user.getName());
-		user.setPassport(user.getPassport());
-		user.setJob(user.getJob());
-		user.setQq(user.getQq());
-		user.setWeixin(user.getWeixin());
+		user.setPassword(MD5Util.getEncryptedPwd(user.getPassword()));
 		user.setPhone(user.getPhone());
 		user.setAddress(user.getAddress());
-		user.setType(user.getType());
-
+		user.setRole(1);
+		user.setCreateTime(new Date());
+		
 		boolean addUserBoolean  = userDao.save(user);
 		
-		return "redirect:/user/findUser.do";
+		return "redirect:/login/login.do";
 	}
 	
 	@RequestMapping("/updateUser.do")
@@ -65,19 +71,9 @@ public class UserController {
 	
 	@RequestMapping("/submitUpdate.do")
 	public String submitUpdate(User user) {
-		
-		user.setId(user.getId());
-		user.setName(user.getName());
-		user.setPassport(user.getPassport());
-		user.setJob(user.getJob());
-		user.setQq(user.getQq());
-		user.setWeixin(user.getWeixin());
 		user.setPhone(user.getPhone());
 		user.setAddress(user.getAddress());
-		user.setType(user.getType());
-
 		boolean addUserBoolean  = userDao.updateUser(user);
-		
 		return "redirect:/user/findUser.do";
 	}
 	

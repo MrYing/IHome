@@ -1,11 +1,11 @@
-package com.shanda.dao;
+package com.ihome.dao;
 
 import java.util.List;
 
 import javax.swing.border.EmptyBorder;
 
-import com.shanda.annotation.MyBatisRepository;
-import com.shanda.entity.User;
+import com.ihome.annotation.MyBatisRepository;
+import com.ihome.entity.User;
 
 @MyBatisRepository
 public interface UserDao {

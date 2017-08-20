@@ -1,4 +1,4 @@
-package com.shanda.interceptor;
+package com.ihome.interceptor;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.shanda.entity.User;
+import com.ihome.entity.User;
 
 public class LoginInterceptor implements HandlerInterceptor {
 

@@ -20,7 +20,7 @@
 		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd
 		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.2.xsd">
 	
-	<util:properties id="jdbc" location="classpath:jdbc.properties"/>
+	<util:properties id="jdbc" location="classpath:resources/jdbc.properties"/>
 	
 <!-- 	<bean id="propertyConfigurer"  
         class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">  
@@ -41,17 +41,17 @@
 	<!-- 配置 sqlSessionFactory -->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">  
       <property name="dataSource" ref="ds" />
-      <property name="mapperLocations" value="classpath:com/shanda/dao/*.xml"/>
+      <property name="mapperLocations" value="classpath:resources/mapper/*.xml"/>
     </bean>
     
     <!-- 配置MyBatis注解 -->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-       <property name="basePackage" value="com.shanda.dao" />
+       <property name="basePackage" value="com.ihome.dao" />
        <property name="annotationClass" 
-           value="com.shanda.annotation.MyBatisRepository"/>
+           value="com.ihome.annotation.MyBatisRepository"/>
 	</bean>
 		<!-- 开启注解扫描   -->
-	<context:component-scan base-package="com.shanda"/>
+	<context:component-scan base-package="com.ihome"/>
 	
 	<!-- 开启RequestMapping 注解 -->
 	<mvc:annotation-driven/>
@@ -69,7 +69,7 @@
 			<mvc:mapping path="/**"/>
 			<mvc:exclude-mapping path="/login/toLogin.do"/>
 			<mvc:exclude-mapping path="/login/login.do"/>
-			<bean class="com.shanda.interceptor.LoginInterceptor"></bean>
+			<bean class="com.ihome.interceptor.LoginInterceptor"></bean>
 		</mvc:interceptor>
 		
 	</mvc:interceptors>
