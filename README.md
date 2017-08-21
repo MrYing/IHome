@@ -1,6 +1,5 @@
 # IHome
 
-
 ## Build Setup
 
 ``` bash
