@@ -15,5 +15,17 @@ public class IndexController {
 
 		return "index";
 	}
+	
+	@RequestMapping("/houseList")
+	public String houseList(HttpServletRequest request) {
+
+		return "index";
+	}
+	
+	@RequestMapping("/saveHouse")
+	public String saveHouse(HttpServletRequest request) {
+
+		return "index";
+	}
 
 }
